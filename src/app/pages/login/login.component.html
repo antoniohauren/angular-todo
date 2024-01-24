@@ -1,0 +1,61 @@
+<div class="flex flex-col gap-2 bg-white rounded-lg shadow p-6">
+  <h5 class="text-xl font-bold text-gray-900 mb-5">Login Here</h5>
+
+  <form
+    action=""
+    (ngSubmit)="onSubmit()"
+    [formGroup]="loginForm"
+    autocomplete="off"
+    novalidate
+  >
+    <div class="flex flex-col gap-1 mb-3">
+      <label for="">Email</label>
+      <input
+        type="text"
+        placeholder="email"
+        formControlName="email"
+        class="w-full py-2 px-3 outline-none border-2 border-gray-200 rounded-lg focus:border-blue-600"
+        [class]="{
+          'border-red-300':
+            loginForm.get('email')?.hasError('required') &&
+            loginForm.get('email')?.touched,
+          'border-green-300': loginForm.get('email')?.valid
+        }"
+      />
+
+      @if (loginForm.get('email')?.hasError('required') &&
+      loginForm.get('email')?.touched) {
+      <span class="text-red-600 text-sm font-medium">Email is required!</span>
+      }
+    </div>
+
+    <div class="flex flex-col gap-1 mb-3">
+      <label for="">Password</label>
+      <input
+        type="password"
+        placeholder="Password"
+        formControlName="password"
+        class="w-full py-2 px-3 outline-none border-2 border-gray-200 rounded-lg focus:border-blue-600"
+        [class]="{
+          'border-red-300':
+            loginForm.get('password')?.hasError('required') &&
+            loginForm.get('password')?.touched,
+          'border-green-300': loginForm.get('password')?.valid
+        }"
+      />
+
+      @if (loginForm.get('password')?.hasError('required') &&
+      loginForm.get('password')?.touched) {
+      <span class="text-red-600 text-sm font-medium"
+        >Password is required!</span
+      >
+      }
+    </div>
+
+    <button
+      class="py-2.5 px-6 rounded-lg text-white bg-blue-600 hover:bg-blue-700"
+    >
+      Login
+    </button>
+  </form>
+</div>
